@@ -1,6 +1,6 @@
 {
   "name": "bikeweek-backend",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Imports events from CSV form data into Sched",
   "main": "src/index.ts",
   "scripts": {
