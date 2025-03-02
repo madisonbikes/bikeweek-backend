@@ -1,5 +1,5 @@
 import { configuration } from "./config";
-import RedisStore from "connect-redis";
+import { RedisStore } from "connect-redis";
 import { createClient, RedisClientType } from "redis";
 import { logger, maskUriPassword } from "./utils";
 
