@@ -55,7 +55,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.2.2",
     "@tsconfig/node20": "^20.1.4",
     "@types/bcryptjs": "^2.4.6",
