@@ -7,13 +7,13 @@ describe("event schema", () => {
 
   it("parses timestamp as string", () => {
     expect(testTimestampSchema.parse(ISO_TIMESTAMP)).toEqual(
-      new Date(ISO_TIMESTAMP)
+      new Date(ISO_TIMESTAMP),
     );
   });
 
   it("parses timestamp as date", () => {
     expect(testTimestampSchema.parse(new Date(ISO_TIMESTAMP))).toEqual(
-      new Date(ISO_TIMESTAMP)
+      new Date(ISO_TIMESTAMP),
     );
   });
 
@@ -29,7 +29,7 @@ describe("event schema", () => {
 
   it("parses event days/dates as string", () => {
     expect(
-      eventDaysArraySchema.safeParse([new Date(ISO_TIMESTAMP)]).success
+      eventDaysArraySchema.safeParse([new Date(ISO_TIMESTAMP)]).success,
     ).toBe(true);
   });
 

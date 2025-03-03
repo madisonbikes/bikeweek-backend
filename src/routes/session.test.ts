@@ -40,7 +40,7 @@ describe("login route", () => {
               code: "invalid_type",
               path: ["password"],
             }),
-          ])
+          ]),
         );
       });
   });

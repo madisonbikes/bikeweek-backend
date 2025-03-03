@@ -10,7 +10,7 @@ export const loginTestUser = (request: TestRequest, password = "password") => {
 
 export const loginTestAdminUser = (
   request: TestRequest,
-  password = "password"
+  password = "password",
 ) => {
   return request
     .post("/api/v1/session/login")
