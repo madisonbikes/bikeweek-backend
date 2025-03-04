@@ -1,20 +1,20 @@
 import { StatusCodes } from "http-status-codes";
-import { AuthenticatedUser } from "../routes/contract";
 import { logger } from "../utils";
-import { ExpressMiddleware, Roles, userHasRole } from "./authentication";
+import { Roles, userHasRole } from "./authentication";
+import { createMiddleware } from "hono/factory";
 
 type ValidateOptions = {
   role: Roles;
 };
 
-export const validateRole = ({ role }: ValidateOptions): ExpressMiddleware => {
-  return (request, response, next) => {
-    logger.trace(request.user, `validating role "${role}"`);
-    const user = request.user as AuthenticatedUser;
+export const validateRole = ({ role }: ValidateOptions) => {
+  return createMiddleware(async (c, next) => {
+    const user = c.get("checkUser");
+    logger.trace(`validating role "%s" for user %o`, role, user);
     if (user === undefined || !userHasRole(user, role)) {
-      response.status(StatusCodes.FORBIDDEN).send(`requires role "${role}"`);
+      c.body(`requires role "${role}"`, StatusCodes.FORBIDDEN);
     } else {
-      next();
+      await next();
     }
-  };
+  });
 };

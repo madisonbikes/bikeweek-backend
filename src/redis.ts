@@ -7,13 +7,15 @@ let client: RedisClientType | undefined;
 
 if (isEnabled()) {
   client = createClient({ url: configuration.redisUri });
-  client.on("error", (err) => logger.warn(err, "Redis Client Error"));
+  client.on("error", (err) => {
+    logger.warn(err, "Redis Client Error");
+  });
 } else {
   logger.info("Redis disabled");
 }
 
 function isEnabled() {
-  return configuration.redisUri !== undefined && configuration.redisUri !== "";
+  return configuration.redisUri !== "";
 }
 
 async function start() {

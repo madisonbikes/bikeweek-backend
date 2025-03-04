@@ -18,7 +18,6 @@ export const entryResponseSchema = z.object({
   total_count: z.number(),
   entries: entrySchema.array(),
 });
-export type EntryResponse = z.infer<typeof entryResponseSchema>;
 
 const choiceSchema = z.object({
   text: z.string(),
@@ -46,5 +45,3 @@ export const FormResponseSchema = z.object({
   title: z.string(),
   fields: fieldSchema.array(),
 });
-
-export type FormResponse = z.infer<typeof FormResponseSchema>;

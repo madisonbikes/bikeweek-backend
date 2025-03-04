@@ -1,16 +1,22 @@
 import { StatusCodes } from "http-status-codes";
-import { AuthenticatedUser } from "../routes/contract";
 import { logger } from "../utils";
-import { ExpressMiddleware } from "./authentication";
+import { createMiddleware } from "hono/factory";
+import { Env, Input } from "hono";
 
-export const validateAuthenticated = (): ExpressMiddleware => {
-  return (request, response, next) => {
-    logger.trace(request.user, "validating authenticated");
-    const user = request.user as AuthenticatedUser;
+export const validateAuthenticated = <
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  E extends Env = any,
+  P extends string = string,
+  I extends Input = object,
+>() =>
+  createMiddleware<E, P, I>(async (c, next) => {
+    const user = c.get("checkUser");
+    logger.trace("validating authenticated: %o", user);
+
     if (user === undefined) {
-      response.status(StatusCodes.UNAUTHORIZED).send("requires authenticated");
+      c.body("requires authenticated", StatusCodes.UNAUTHORIZED);
     } else {
-      next();
+      c.set("user", user);
+      await next();
     }
-  };
-};
+  });

@@ -7,4 +7,9 @@
       "path": "../bikeweek-client",
     },
   ],
+  "settings": {
+    "terminal.integrated.env.linux": {
+      "NVM_VERSION_SELECTOR": "lts/iron",
+    },
+  },
 }

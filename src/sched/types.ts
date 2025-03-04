@@ -42,7 +42,7 @@ export const addSessionRequestSchema = z.object({
 
 export type AddSessionRequest = z.infer<typeof addSessionRequestSchema>;
 
-const modifySessionRequestSchema = z.object({
+const _modifySessionRequestSchema = z.object({
   session_key: z.string(),
   name: z.string().optional(),
 
@@ -63,7 +63,7 @@ const modifySessionRequestSchema = z.object({
   ticket_message: z.string().optional(),
   active: z.string().optional(),
 });
-export type ModifySessionRequest = z.infer<typeof modifySessionRequestSchema>;
+export type ModifySessionRequest = z.infer<typeof _modifySessionRequestSchema>;
 
 export const sessionListResponseSchema = z.object({
   event_key: z.string(),

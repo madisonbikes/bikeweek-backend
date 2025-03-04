@@ -1,24 +1,26 @@
-import express from "express";
-import {
-  federatedMiddleware,
-  finalizeAuthenticationMiddleware,
-  validateBodySchema,
-} from "../security";
+import { validateBodySchema } from "../security";
 import { federatedLoginBodySchema } from "./contract";
-import { federatedStrategy } from "../security/federated";
+import { checkFederatedLogin, federationEnabled } from "../security/federated";
+import { Hono } from "hono";
+import { StatusCodes } from "http-status-codes";
 
-function routes() {
-  const router = express.Router();
+const routes = new Hono();
 
-  // only enable route if necessary
-  if (federatedStrategy.enabled) {
-    router.post(
-      "/federated/login",
-      validateBodySchema({ schema: federatedLoginBodySchema }),
-      federatedMiddleware,
-      finalizeAuthenticationMiddleware,
-    );
-  }
-  return router;
+// only enable route if federation is enabled
+if (federationEnabled()) {
+  routes.post(
+    "/federated/login",
+    validateBodySchema({ schema: federatedLoginBodySchema }),
+    async (c) => {
+      const login = c.req.valid("json");
+      const auth = await checkFederatedLogin(login);
+      if (!auth) {
+        c.status(StatusCodes.UNAUTHORIZED);
+      } else {
+        return c.json(auth);
+      }
+    },
+  );
 }
-export default { routes };
+
+export default routes;

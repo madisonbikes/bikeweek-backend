@@ -21,7 +21,9 @@ function trigger() {
     clearTimeout(cancelTimeout);
   }
 
-  cancelTimeout = setTimeout(() => syncDoExport(), 5000);
+  cancelTimeout = setTimeout(() => {
+    syncDoExport();
+  }, 5000);
 }
 
 function triggerImmediate() {
@@ -35,8 +37,12 @@ function syncDoExport() {
     return;
   }
   Promise.resolve(doExport())
-    .then(() => logger.info("Successful sync to sched"))
-    .catch((e) => logger.error(e));
+    .then(() => {
+      logger.info("Successful sync to sched");
+    })
+    .catch((e: unknown) => {
+      logger.error(e);
+    });
 }
 
 async function doExport(): Promise<void> {

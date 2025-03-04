@@ -19,6 +19,7 @@ export const createDuplicatedFederatedId = async () => {
   });
 };
 
+/** @lintignore */
 export const createTestAdminUser = async () => {
   await database.users.insertOne({
     username: "testadmin",

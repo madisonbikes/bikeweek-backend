@@ -1,24 +1,19 @@
+import { CookieStore, sessionMiddleware } from "hono-sessions";
 import { configuration } from "./config";
-import redis from "./redis";
-import session from "express-session";
 
 const COOKIE_MAX_AGE_DAYS = 7;
 
+const store = new CookieStore();
+
 export function buildMiddleware() {
-  const sessionOptions: session.SessionOptions = {
-    proxy: configuration.trustProxy,
-    secret: configuration.sessionStoreSecret,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: configuration.secureCookie,
-      maxAge: COOKIE_MAX_AGE_DAYS * 24 * 60 * 60 * 1000,
-      httpOnly: true,
-      sameSite: configuration.secureCookie ? "strict" : "lax",
+  return sessionMiddleware({
+    store,
+    encryptionKey: configuration.sessionStoreSecret, // Required for CookieStore, recommended for others
+    expireAfterSeconds: COOKIE_MAX_AGE_DAYS * 24 * 60 * 60,
+    cookieOptions: {
+      sameSite: "Lax", // Recommended for basic CSRF protection in modern browsers
+      path: "/", // Required for this library to work properly
+      httpOnly: true, // Recommended to avoid XSS attacks
     },
-  };
-  if (redis.isEnabled()) {
-    sessionOptions.store = redis.createStore();
-  }
-  return session(sessionOptions);
+  });
 }

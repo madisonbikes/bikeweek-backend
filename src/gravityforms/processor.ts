@@ -143,7 +143,7 @@ class EventHelper {
     }
     const sponsors = baseSponsorText.split(separator).map((v) => v.trim());
     const retval = sponsors.map((sponsor) => {
-      const res = sponsor.match(/(.*)\((.+)\)/);
+      const res = /(.*)\((.+)\)/.exec(sponsor);
       if (!res) {
         return { name: sponsor, url: "" };
       } else {

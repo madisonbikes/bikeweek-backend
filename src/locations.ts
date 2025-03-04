@@ -5,7 +5,7 @@ export const buildMapsUrl = (location: EventLocation): string => {
   // translate blank name to no location in sched
   if (location.name === "") return "";
 
-  let params: { [name: string]: string | string[] } = {
+  let params: Record<string, string | string[]> = {
     api: "1",
   };
   if (location.maps_query !== undefined && location.maps_query !== "") {

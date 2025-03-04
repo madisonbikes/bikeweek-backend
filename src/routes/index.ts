@@ -1,16 +1,15 @@
-import express from "express";
 import events from "./events";
 import users from "./users";
 import session from "./session";
 import info from "./info";
+import { Hono } from "hono";
 
-function routes() {
-  return express
-    .Router()
-    .use("/info", info.routes())
-    .use("/session", session.routes())
-    .use("/users", users.routes())
-    .use("/events", events.routes());
-}
+const app = new Hono();
 
-export default { routes };
+app
+  .route("/info", info.routes)
+  .route("/session", session.routes)
+  .route("/users", users.routes)
+  .route("/events", events.routes);
+
+export default app;

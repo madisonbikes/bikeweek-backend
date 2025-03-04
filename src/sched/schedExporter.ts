@@ -93,7 +93,7 @@ export async function exportToSched(
         };
         let result: Result<string, string>;
         let action;
-        if (relevantExistingKeys.indexOf(session_key) !== -1) {
+        if (relevantExistingKeys.includes(session_key)) {
           result = await schedApi.modifySession(base);
           action = "modified";
         } else {

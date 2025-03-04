@@ -8,6 +8,7 @@ export const loginTestUser = (request: TestRequest, password = "password") => {
     .expect(StatusCodes.OK);
 };
 
+/** @lintignore */
 export const loginTestAdminUser = (
   request: TestRequest,
   password = "password",

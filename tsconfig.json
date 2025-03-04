@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "allowJs": false,
     "noImplicitOverride": true,
-    "typeRoots": ["@types", "./node_modules/@types"],
     "outDir": "dist"
-  }
+  },
+  "include": ["src/**/*.ts", ".commitlintrc.ts", "jest.config.ts"]
 }

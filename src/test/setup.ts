@@ -2,9 +2,9 @@ import { testConfiguration } from "../config";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { database } from "../database/database";
 import apiServer from "../server";
-import { Server } from "./request";
+import { ServerType } from "@hono/node-server";
 
-export let runningApiServer: Server | undefined;
+export let runningApiServer: ServerType | undefined;
 
 export type SuiteOptions = {
   // spin up a memory mongodb instance for testing purposes
@@ -50,7 +50,7 @@ export const setupSuite = (options: Partial<SuiteOptions> = {}): void => {
   });
 
   afterEach(async () => {
-    const queries: Array<Promise<unknown>> = [];
+    const queries: Promise<unknown>[] = [];
     if (options.clearUsers ?? false) {
       queries.push(database.users.deleteMany({}));
     }
@@ -74,6 +74,7 @@ export const setupSuite = (options: Partial<SuiteOptions> = {}): void => {
   });
 };
 
+/** @lintignore */
 export const initializeSuite = () => {
   // empty, exists for symmetry with cleanupSuite
 };

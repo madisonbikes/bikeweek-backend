@@ -29,6 +29,7 @@ const parseBooleanWithDefault = (
   return retval;
 };
 
+/** @internal */
 export const testConfiguration = {
   reset() {
     if (process.env.NODE_ENV !== "test") {

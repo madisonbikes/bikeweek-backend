@@ -1,53 +1,37 @@
-import { Request } from "express";
 import { buildAuthenticatedUser } from "../security";
 import { userModel } from "../database/users";
-import { logger } from "../utils";
-import { Strategy } from "passport";
 import googleFederatedVerifier from "./google";
-import { FederatedLoginBody } from "../routes/contract";
+import { AuthenticatedUser, FederatedLoginBody } from "../routes/contract";
+import { logger } from "../utils";
 
-export const STRATEGY_NAME = "federated";
+export const federationEnabled = () => {
+  return googleFederatedVerifier.enabled();
+};
 
-class FederatedStrategy extends Strategy {
-  constructor() {
-    super();
-    this.name = STRATEGY_NAME;
+export const checkFederatedLogin = async (auth: FederatedLoginBody) => {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (auth.provider !== "google") {
+    logger.warn("unsupported federated authentication provider");
+    return undefined;
   }
 
-  get enabled() {
-    return googleFederatedVerifier.enabled();
-  }
+  const email = await googleFederatedVerifier.verifyFederatedToken(auth.token);
 
-  override async authenticate(req: Request) {
-    try {
-      const auth = req.validated as FederatedLoginBody;
-      if (auth.provider !== "google") {
-        this.fail("unsupported federated authentication provider");
-        return;
-      }
+  let retval: AuthenticatedUser | undefined = undefined;
 
-      const email = await googleFederatedVerifier.verifyFederatedToken(
-        auth.token,
-      );
-
-      let ok = false;
-      if (email !== undefined) {
-        const user = await userModel.findFederatedUser(
-          googleFederatedVerifier.name(),
-          email,
-        );
-        if (user !== undefined) {
-          ok = true;
-          this.success(buildAuthenticatedUser(user));
-        }
-      }
-      if (!ok) {
-        this.fail("user not found");
-      }
-    } catch (err) {
-      logger.warn(err, "federated authenticate");
-      this.fail("error");
+  let ok = false;
+  if (email !== undefined) {
+    const user = await userModel.findFederatedUser(
+      googleFederatedVerifier.name(),
+      email,
+    );
+    if (user !== undefined) {
+      ok = true;
+      retval = buildAuthenticatedUser(user);
     }
   }
-}
-export const federatedStrategy = new FederatedStrategy();
+  if (!ok) {
+    logger.info("user not found");
+  }
+  return retval;
+};

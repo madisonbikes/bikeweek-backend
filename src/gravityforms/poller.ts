@@ -54,7 +54,7 @@ class RemoteEventPoller {
   private isUpdated(events: BikeWeekEvent[]) {
     const hash = createHash("sha1");
     for (const e of events) {
-      hash.update(e.modifyDate.toUTCString() ?? "");
+      hash.update(e.modifyDate.toUTCString());
     }
     const calculatedHash = hash.digest("base64");
     const updated =
