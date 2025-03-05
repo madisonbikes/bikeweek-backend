@@ -26,5 +26,4 @@ jobs:
           node-version: 20.x
           cache: "npm"
       - run: npm ci
-      - run: npm run test --maxWorkers=50%
-      - run: npm run lint
+      - run: npm run check

@@ -22,8 +22,7 @@ jobs:
           cache: "npm"
 
       - run: npm ci
-      - run: npm run test --maxWorkers=50%
-      - run: npm run lint
+      - run: npm run check
 
       - name: Deploy on Server
         uses: appleboy/ssh-action@v1.2.1
