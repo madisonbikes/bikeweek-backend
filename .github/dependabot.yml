@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
     target-branch: "main"
     open-pull-requests-limit: 20
     commit-message:
@@ -16,7 +16,6 @@ updates:
       interval: "monthly"
     target-branch: "main"
 
-    # temporarily disabled until 2024
     open-pull-requests-limit: 5
 
     commit-message:
