@@ -16,7 +16,7 @@ import { ObjectId } from "mongodb";
 import { DbUser } from "../database/types";
 import { logger } from "../utils";
 import { StatusCodes } from "http-status-codes";
-import googleFederatedVerifier from "../security/google";
+import { googleFederatedVerifier } from "../security/google";
 import { Hono } from "hono";
 
 const routes = new Hono();
@@ -50,7 +50,7 @@ routes
     const users = await userModel.users();
     const mappedUsers = users.map(mapDbUserToExternalUser);
     const adaptedUsers = userSchema.array().parse(mappedUsers);
-    c.json(adaptedUsers);
+    return c.json(adaptedUsers);
   })
 
   /** return current user info (similar to /session/info but reflects database values not session structure) */
@@ -59,13 +59,12 @@ routes
     const dbUser = await userModel.findUserById(new ObjectId(authUser.id));
     if (!dbUser) {
       // something's wrong if can't find id because it's an authenticated session
-      c.status(StatusCodes.INTERNAL_SERVER_ERROR);
-      return;
+      return c.body("internal error", StatusCodes.INTERNAL_SERVER_ERROR);
     }
 
     const mapped = mapDbUserToExternalUser(dbUser);
     const adaptedUser = userSchema.parse(mapped);
-    c.json(adaptedUser);
+    return c.json(adaptedUser);
   })
 
   /** update current user info */
@@ -82,13 +81,11 @@ routes
       if (!foundUser) {
         // something's wrong if can't find id because it's an authenticated session
         logger.warn({ dbId }, "unexpected missing user");
-        c.status(StatusCodes.INTERNAL_SERVER_ERROR);
-        return;
+        return c.body("internal error", StatusCodes.INTERNAL_SERVER_ERROR);
       }
 
       if (!(await checkPassword(modify.old, foundUser))) {
-        c.body("old password doesn't match", StatusCodes.FORBIDDEN);
-        return;
+        return c.body("old password doesn't match", StatusCodes.FORBIDDEN);
       }
       const hashed_password = await generateHashedPassword(modify.new);
 
@@ -97,12 +94,11 @@ routes
       });
       if (!newUser) {
         logger.warn({ dbId }, "unexpected missing user for modify");
-        c.status(StatusCodes.INTERNAL_SERVER_ERROR);
-        return;
+        return c.body("internal error", StatusCodes.INTERNAL_SERVER_ERROR);
       }
       const returnMap = mapDbUserToExternalUser(newUser);
       const adaptedUser = userSchema.parse(returnMap);
-      c.json(adaptedUser);
+      return c.json(adaptedUser);
     },
   )
   .put(
@@ -117,19 +113,18 @@ routes
         data.validateToken,
       );
       if (federatedId === undefined) {
-        c.status(StatusCodes.FORBIDDEN);
-        return;
+        return c.body("forbidden", StatusCodes.FORBIDDEN);
       }
       const result = await userModel.connectFederatedProvider(dbId, {
         provider: data.provider,
         federatedId,
       });
       if (!result) {
-        c.status(StatusCodes.NOT_FOUND);
+        return c.body("not found", StatusCodes.NOT_FOUND);
       } else {
         const returnMap = mapDbUserToExternalUser(result);
         const adaptedUser = userSchema.parse(returnMap);
-        c.json(adaptedUser);
+        return c.json(adaptedUser);
       }
     },
   )
@@ -139,11 +134,11 @@ routes
     const provider = federatedProviderSchema.parse(c.req.param("provider"));
     const result = await userModel.disconnectFederatedProvider(dbId, provider);
     if (!result) {
-      c.status(StatusCodes.NOT_FOUND);
+      return c.body("not found", StatusCodes.NOT_FOUND);
     } else {
       const returnMap = mapDbUserToExternalUser(result);
       const adaptedUser = userSchema.parse(returnMap);
-      c.json(adaptedUser);
+      return c.json(adaptedUser);
     }
   });
 

@@ -2,7 +2,7 @@ import { testConfiguration } from "../config";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { database } from "../database/database";
 import apiServer from "../server";
-import { ServerType } from "@hono/node-server";
+import { serve, ServerType } from "@hono/node-server";
 
 export let runningApiServer: ServerType | undefined;
 
@@ -45,7 +45,10 @@ export const setupSuite = (options: Partial<SuiteOptions> = {}): void => {
     }
 
     if (withApiServer) {
-      runningApiServer = await apiServer.create();
+      const randomPort = Math.floor(Math.random() * 10000) + 3000;
+      const app = apiServer.create();
+
+      runningApiServer = serve({ port: randomPort, fetch: app.fetch });
     }
   });
 
@@ -59,7 +62,7 @@ export const setupSuite = (options: Partial<SuiteOptions> = {}): void => {
 
   afterAll(async () => {
     if (withApiServer) {
-      await apiServer.stop();
+      runningApiServer?.close();
       runningApiServer = undefined;
     }
 

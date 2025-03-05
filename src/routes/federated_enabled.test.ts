@@ -3,14 +3,16 @@ import { createDuplicatedFederatedId, createTestUser } from "../test/data";
 import { StatusCodes } from "http-status-codes";
 import { userSchema } from "./contract";
 import { testConfiguration } from "../config";
-import googleFederatedVerifier from "../security/google";
+import { googleFederatedVerifier } from "../security/google";
+
+// Mock the googleFederatedVerifier
 jest.mock("../security/google");
+
 const mockedGoogleFederatedVerifier = jest.mocked(googleFederatedVerifier);
+mockedGoogleFederatedVerifier.name.mockReturnValue("google");
+mockedGoogleFederatedVerifier.enabled.mockReturnValue(true);
 
 describe("federated routes (enabled)", () => {
-  mockedGoogleFederatedVerifier.enabled.mockReturnValue(true);
-  mockedGoogleFederatedVerifier.name.mockReturnValue("google");
-
   setupSuite({
     withDatabase: true,
     withApiServer: true,
@@ -19,20 +21,23 @@ describe("federated routes (enabled)", () => {
 
   // enable the federated endpoint
   testConfiguration.add({ googleAuthClientId: "blarg" });
+
   let request: TestRequest;
 
   beforeEach(async () => {
     // create a test user for login
     await createTestUser();
-
     request = testRequest();
-  });
 
-  afterEach(() => {
-    jest.clearAllMocks();
+    // clear the verify federated token mock
+    mockedGoogleFederatedVerifier.verifyFederatedToken.mockReset();
   });
 
   it("responds to federated/google auth with 401 if configured", async () => {
+    mockedGoogleFederatedVerifier.verifyFederatedToken.mockRejectedValue(
+      new Error("Invalid token"),
+    );
+
     await request
       .post("/api/v1/session/federated/login")
       .send({ provider: "google", token: "blarg" })

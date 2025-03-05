@@ -71,7 +71,9 @@ const defaultConfiguration = {
   serverPort: parseIntWithDefault(process.env.PORT, 3001),
   pollInterval: parseIntWithDefault(process.env.POLLINTERVAL, 10 * 60 * 1000),
   redisUri: process.env.REDIS_URI ?? "",
-  sessionStoreSecret: process.env.SESSION_STORE_SECRET ?? "notverysecret",
+  sessionStoreSecret:
+    process.env.SESSION_STORE_SECRET ??
+    "notverysecret_notverysecret_notverysecret",
   secureCookie: parseBooleanWithDefault(process.env.SECURE_COOKIE, !isDev),
   trustProxy: parseBooleanWithDefault(process.env.TRUST_PROXY, false),
   enableCors: parseBooleanWithDefault(process.env.ENABLE_CORS, false),

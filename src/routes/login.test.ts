@@ -32,18 +32,28 @@ describe("login route", () => {
       .post("/api/v1/session/login")
       .expect(StatusCodes.BAD_REQUEST)
       .expect((res) => {
-        expect(res.body).toEqual(
-          expect.arrayContaining([
-            expect.objectContaining({
-              code: "invalid_type",
-              path: ["username"],
-            }),
-            expect.objectContaining({
-              code: "invalid_type",
-              path: ["password"],
-            }),
-          ]),
-        );
+        expect(res.body).toEqual({
+          error: {
+            issues: [
+              {
+                code: "invalid_type",
+                expected: "string",
+                message: "Required",
+                path: ["username"],
+                received: "undefined",
+              },
+              {
+                code: "invalid_type",
+                expected: "string",
+                message: "Required",
+                path: ["password"],
+                received: "undefined",
+              },
+            ],
+            name: "ZodError",
+          },
+          success: false,
+        });
       });
   });
 

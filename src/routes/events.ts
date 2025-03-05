@@ -11,20 +11,20 @@ const routes = new Hono();
 routes
   .get("/", validateAdmin(), async (c) => {
     const events = await eventModel.events();
-    c.json(events);
+    return c.json(events);
   })
   .get("/:eventId", validateAdmin(), async (c) => {
     try {
       const id = parseInt(c.req.param("eventId"));
       const event = await eventModel.findEvent(id);
       if (!event) {
-        c.body("not found", StatusCodes.NOT_FOUND);
+        return c.body("not found", StatusCodes.NOT_FOUND);
       } else {
-        c.json(event);
+        return c.json(event);
       }
     } catch (err) {
       logger.error(err);
-      c.body("invalid request", StatusCodes.BAD_REQUEST);
+      return c.body("invalid request", StatusCodes.BAD_REQUEST);
     }
   })
   .put(
@@ -36,12 +36,11 @@ routes
       const id = parseInt(c.req.param("eventId"));
       const event = await eventModel.updateEvent(id, eventData);
       if (!event) {
-        c.body("not found", StatusCodes.NOT_FOUND);
+        return c.body("not found", StatusCodes.NOT_FOUND);
       } else {
-        c.json(event);
-
         // trigger an export on any modification
         eventSync.trigger();
+        return c.json(event);
       }
     },
   )
@@ -49,12 +48,11 @@ routes
     const id = parseInt(c.req.param("eventId"));
     const event = await eventModel.deleteEvent(id);
     if (!event) {
-      c.body("not found", StatusCodes.NOT_FOUND);
+      return c.body("not found", StatusCodes.NOT_FOUND);
     } else {
-      c.body("ok");
-
       // trigger an export on any modification
       eventSync.trigger();
+      return c.body("ok");
     }
   });
 

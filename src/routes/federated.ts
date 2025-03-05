@@ -1,26 +1,32 @@
 import { validateBodySchema } from "../security";
 import { federatedLoginBodySchema } from "./contract";
 import { checkFederatedLogin, federationEnabled } from "../security/federated";
-import { Hono } from "hono";
 import { StatusCodes } from "http-status-codes";
+import { AppHono } from "../app";
+import { logger } from "../utils";
 
-const routes = new Hono();
-
-// only enable route if federation is enabled
-if (federationEnabled()) {
-  routes.post(
-    "/federated/login",
-    validateBodySchema({ schema: federatedLoginBodySchema }),
-    async (c) => {
-      const login = c.req.valid("json");
-      const auth = await checkFederatedLogin(login);
-      if (!auth) {
-        c.status(StatusCodes.UNAUTHORIZED);
-      } else {
-        return c.json(auth);
-      }
-    },
-  );
-}
-
-export default routes;
+const routes = new AppHono();
+routes.post(
+  "/federated/login",
+  validateBodySchema({ schema: federatedLoginBodySchema }),
+  async (c, next) => {
+    if (!federationEnabled()) {
+      logger.warn("federation not enabled");
+      return c.body("not found", StatusCodes.NOT_FOUND);
+    }
+    logger.info("federation enabled");
+    await next();
+  },
+  async (c) => {
+    const login = c.req.valid("json");
+    const auth = await checkFederatedLogin(login);
+    if (!auth) {
+      return c.body("unauthorized", StatusCodes.UNAUTHORIZED);
+    } else {
+      const session = c.get("session");
+      session.set("user", auth);
+      return c.json(auth);
+    }
+  },
+);
+export default { routes };
