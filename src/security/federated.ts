@@ -9,11 +9,6 @@ export const federationEnabled = () => {
 };
 
 export const checkFederatedLogin = async (auth: FederatedLoginBody) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  if (auth.provider !== "google") {
-    logger.warn("unsupported federated authentication provider");
-    return undefined;
-  }
   let retval: AuthenticatedUser | undefined = undefined;
   try {
     const email = await googleFederatedVerifier.verifyFederatedToken(

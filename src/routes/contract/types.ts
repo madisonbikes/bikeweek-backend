@@ -71,12 +71,14 @@ export const loginBodySchema = z
 
 export type LoginBody = z.infer<typeof loginBodySchema>;
 
-export const federatedProviderSchema = z.enum(["google"]);
+export const federatedProviderSchema = z.string();
 export type FederatedProvider = z.infer<typeof federatedProviderSchema>;
 
-export const federatedLoginBodySchema = z.discriminatedUnion("provider", [
-  z.object({ provider: z.literal("google"), token: z.string() }),
-]);
+// provider=google for now
+export const federatedLoginBodySchema = z.object({
+  provider: federatedProviderSchema,
+  token: z.string(),
+});
 export type FederatedLoginBody = z.infer<typeof federatedLoginBodySchema>;
 
 export const federatedIdSchema = z.object({

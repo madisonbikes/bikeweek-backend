@@ -58,9 +58,7 @@ describe("federated routes (enabled)", () => {
       .post("/api/v1/session/federated/login")
       .send({ provider: "bad_provider", token: "blarg" })
       .expect(StatusCodes.BAD_REQUEST)
-      .expect(/invalid_union_discriminator/)
-      .expect(/google/)
-      .expect(/provider/);
+      .expect(/unsupported provider/);
   });
 
   it("responds to federated/google auth with proper match id", async () => {

@@ -10,7 +10,7 @@ import { AppHono } from "../app";
 
 const routes = new AppHono();
 
-routes.route("/", federated.routes);
+routes.route("/federated", federated.routes);
 
 routes
   .post(

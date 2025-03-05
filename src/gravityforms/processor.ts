@@ -16,12 +16,12 @@ import {
 import { logger } from "../utils";
 
 /** this list is NOT exhaustive, just used for conditional behaviors in the backend */
-export enum EventTypes {
-  DISCOUNT = "discount",
-  ENDOFWEEKPARTY = "endofweekparty",
-  PAID = "paid",
-  FREE = "free",
-}
+export const EventTypes = {
+  DISCOUNT: "discount",
+  ENDOFWEEKPARTY: "endofweekparty",
+  PAID: "paid",
+  FREE: "free",
+} as const;
 
 const GF_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 

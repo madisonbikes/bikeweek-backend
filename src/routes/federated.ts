@@ -6,19 +6,23 @@ import { AppHono } from "../app";
 import { logger } from "../utils";
 
 const routes = new AppHono();
+routes.all("/*", async (c, next) => {
+  if (!federationEnabled()) {
+    logger.warn("federation not enabled");
+    return c.body("not found", StatusCodes.NOT_FOUND);
+  }
+  logger.info("federation enabled");
+  await next();
+});
 routes.post(
-  "/federated/login",
+  "/login",
   validateBodySchema({ schema: federatedLoginBodySchema }),
-  async (c, next) => {
-    if (!federationEnabled()) {
-      logger.warn("federation not enabled");
-      return c.body("not found", StatusCodes.NOT_FOUND);
-    }
-    logger.info("federation enabled");
-    await next();
-  },
   async (c) => {
     const login = c.req.valid("json");
+    if (login.provider !== "google") {
+      logger.warn("unsupported federated authentication provider");
+      return c.body("unsupported provider", StatusCodes.BAD_REQUEST);
+    }
     const auth = await checkFederatedLogin(login);
     if (!auth) {
       return c.body("unauthorized", StatusCodes.UNAUTHORIZED);

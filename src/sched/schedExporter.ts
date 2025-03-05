@@ -71,7 +71,6 @@ export async function exportToSched(
         const session_start = `${timeBase} ${time.start}`;
         const session_end = `${timeBase} ${time.end}`;
         const session_type = sortEventTypes(event.eventTypes)
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
           .filter((value) => value !== EventTypes.ENDOFWEEKPARTY)
           .join(",");
         const base = {
