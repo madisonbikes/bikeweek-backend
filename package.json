@@ -43,7 +43,7 @@
     "connection-string": "^4.4.0",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
-    "google-auth-library": "^9.11.0",
+    "google-auth-library": "^9.15.1",
     "hono": "^4.7.4",
     "hono-sessions": "^0.7.1",
     "http-status-codes": "^2.3.0",
