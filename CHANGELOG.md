@@ -1,5 +1,43 @@
 # Changelog
 
+## [1.1.3](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.1.2...bikeweek-backend-v1.1.3) (2025-03-05)
+
+
+### Bug Fixes
+
+* add knip and fix some issues ([f4939b3](https://github.com/madisonbikes/bikeweek-backend/commit/f4939b37114b8363eba8ee13369e2fc07f026f32))
+* bump bcryptjs from 2.4.3 to 3.0.2 ([b2b696f](https://github.com/madisonbikes/bikeweek-backend/commit/b2b696f1eaf44e62d2cab86bd0732f4da869e79f))
+* bump connect-redis from 7.1.1 to 8.0.1 ([cf6f0a2](https://github.com/madisonbikes/bikeweek-backend/commit/cf6f0a2680e00592c911bd5e90e00738f9467399))
+* bump date-fns from 3.6.0 to 4.1.0 ([28bf2c5](https://github.com/madisonbikes/bikeweek-backend/commit/28bf2c51861bf2ad74a23dbb9062ece69dd39c55))
+* bump dotenv from 16.4.5 to 16.4.7 ([c6fa585](https://github.com/madisonbikes/bikeweek-backend/commit/c6fa58536e049098441fd2aa42b8895968bdf556))
+* bump express from 4.19.2 to 4.21.2 ([622c331](https://github.com/madisonbikes/bikeweek-backend/commit/622c331a1642f545d0ff99ddbceea64f7bf1976b))
+* bump google-auth-library from 9.10.0 to 9.11.0 ([8e5e1d7](https://github.com/madisonbikes/bikeweek-backend/commit/8e5e1d78f571a98e984147e5862186935f2380b2))
+* bump google-auth-library from 9.11.0 to 9.15.1 ([c4fa53f](https://github.com/madisonbikes/bikeweek-backend/commit/c4fa53f502a2fc3a8635edb154d1da568780a7b6))
+* bump google-auth-library from 9.9.0 to 9.10.0 ([8b0bdce](https://github.com/madisonbikes/bikeweek-backend/commit/8b0bdceba09a98c07c8889f8839286d7aa76c019))
+* bump helmet from 7.1.0 to 8.0.0 ([a009f67](https://github.com/madisonbikes/bikeweek-backend/commit/a009f67d0fd3157bc1b9ae65e33878147eb8421d))
+* bump hono from 4.7.2 to 4.7.4 ([a6aa523](https://github.com/madisonbikes/bikeweek-backend/commit/a6aa52333bdf1eb4680e602004766b85cf2952ac))
+* bump mongodb from 6.14.0 to 6.14.2 ([99eff62](https://github.com/madisonbikes/bikeweek-backend/commit/99eff62fc77b9d833649cff722cf4471ff71c769))
+* bump mongodb from 6.5.0 to 6.7.0 ([c28dc56](https://github.com/madisonbikes/bikeweek-backend/commit/c28dc56960d72ad8dd03932eefe7bbb6e850e3af))
+* bump mongodb from 6.7.0 to 6.8.0 ([bb14362](https://github.com/madisonbikes/bikeweek-backend/commit/bb14362ea7903577560331feb8f58a2535a0380b))
+* bump mongodb from 6.8.0 to 6.14.0 ([fd65ac9](https://github.com/madisonbikes/bikeweek-backend/commit/fd65ac9831b30877f6627a6d20e4b9668a861901))
+* bump pino from 9.0.0 to 9.1.0 ([295f606](https://github.com/madisonbikes/bikeweek-backend/commit/295f606cd1fa8f66ce209df387644c17bd8210d5))
+* bump pino from 9.1.0 to 9.2.0 ([4bde289](https://github.com/madisonbikes/bikeweek-backend/commit/4bde289fd5966214628498e36ea9a45763372f3c))
+* bump pino from 9.2.0 to 9.6.0 ([8c59e06](https://github.com/madisonbikes/bikeweek-backend/commit/8c59e0607d571e30baf0b2f42121300d19ab4f32))
+* bump pino-pretty from 11.0.0 to 11.1.0 ([b667564](https://github.com/madisonbikes/bikeweek-backend/commit/b667564b26cf6b1a4fb9e93d0f19422803ed316a))
+* bump pino-pretty from 11.1.0 to 11.2.1 ([932e44c](https://github.com/madisonbikes/bikeweek-backend/commit/932e44c9abe2014b7aed800fca9c16d966b11681))
+* bump pino-pretty from 11.2.1 to 13.0.0 ([fa84017](https://github.com/madisonbikes/bikeweek-backend/commit/fa840174823b99e6f5ff6faea29b5235ec3c1220))
+* bump redis from 4.6.13 to 4.6.14 ([f6b7cb1](https://github.com/madisonbikes/bikeweek-backend/commit/f6b7cb1a2016b65474ac3d0d047a55d14054ad88))
+* bump redis from 4.6.14 to 4.7.0 ([89ba654](https://github.com/madisonbikes/bikeweek-backend/commit/89ba6540ba480f9d3efcebefd6d9a39ed1a190b1))
+* bump superagent from 9.0.2 to 10.1.1 ([45b4cc3](https://github.com/madisonbikes/bikeweek-backend/commit/45b4cc3d806d857d23c1c7564e11ba8b1409d37a))
+* bump typescript-eslint to be compatible ([21df689](https://github.com/madisonbikes/bikeweek-backend/commit/21df6899ef188843f99c3d98d4eb31f36b452182))
+* bump zod from 3.23.5 to 3.23.8 ([211a50a](https://github.com/madisonbikes/bikeweek-backend/commit/211a50a3df5b6f9a6402cd8b3f76cc6a87e2866c))
+* bump zod from 3.23.8 to 3.24.2 ([cb6f440](https://github.com/madisonbikes/bikeweek-backend/commit/cb6f44032797ea631dd8401986429cfefc22d655))
+* clean up use of enums (or not) in schemas ([019e5c6](https://github.com/madisonbikes/bikeweek-backend/commit/019e5c64b5cc45a147d6f1b069e83c30b1167c81))
+* commitlint ref to satisfy knip ([fbbf673](https://github.com/madisonbikes/bikeweek-backend/commit/fbbf67344e48b38af6480a39ee8e38d6609a277a))
+* initial migration to hono ([a49d676](https://github.com/madisonbikes/bikeweek-backend/commit/a49d67611c3398396474799f712ea28b84982718))
+* test cases and complete hono support ([2502bb8](https://github.com/madisonbikes/bikeweek-backend/commit/2502bb821c20f410a20995d893ef5cf70095d76e))
+* use new named import ([b572c60](https://github.com/madisonbikes/bikeweek-backend/commit/b572c603394a14720bf70bd28ba7721cfa9c7941))
+
 ## [1.1.2](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.1.1...bikeweek-backend-v1.1.2) (2024-05-20)
 
 ### Bug Fixes
