@@ -19,10 +19,6 @@ routes.post(
   validateBodySchema({ schema: federatedLoginBodySchema }),
   async (c) => {
     const login = c.req.valid("json");
-    if (login.provider !== "google") {
-      logger.warn("unsupported federated authentication provider");
-      return c.body("unsupported provider", StatusCodes.BAD_REQUEST);
-    }
     const auth = await checkFederatedLogin(login);
     if (!auth) {
       return c.body("unauthorized", StatusCodes.UNAUTHORIZED);
