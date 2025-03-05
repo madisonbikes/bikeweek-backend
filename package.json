@@ -75,7 +75,7 @@
     "knip": "^5.45.0",
     "mongodb-memory-server": "^10.1.4",
     "npm-check-updates": "^17.1.15",
-    "prettier": "3.3.2",
+    "prettier": "3.5.3",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
