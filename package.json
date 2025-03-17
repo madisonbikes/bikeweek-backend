@@ -39,7 +39,7 @@
     "@hono/zod-validator": "^0.4.3",
     "bcryptjs": "^3.0.2",
     "build-url": "^6.0.1",
-    "connect-redis": "^8.0.1",
+    "connect-redis": "^8.0.2",
     "connection-string": "^4.4.0",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
