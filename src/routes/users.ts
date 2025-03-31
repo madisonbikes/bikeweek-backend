@@ -147,6 +147,6 @@ export default { routes };
 /** for now, just converts _id ObjectId to id string */
 const mapDbUserToExternalUser = (user: DbUser): User => {
   let { _id, roles, ...rest } = user;
-  if (roles === undefined) roles = [];
+  roles ??= [];
   return { id: _id.toString(), roles, ...rest };
 };
