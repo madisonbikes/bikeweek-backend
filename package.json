@@ -61,7 +61,7 @@
     "@eslint/js": "^9.25.0",
     "@tsconfig/node20": "^20.1.5",
     "@types/jest": "^29.5.14",
-    "@types/node": "^20.17.30",
+    "@types/node": "^20.17.32",
     "@types/superagent": "^8.1.9",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/parser": "^8.29.1",
