@@ -32,6 +32,7 @@ export const setupSuite = (options: Partial<SuiteOptions> = {}): void => {
       gravityFormsUri: "",
       schedUri: "",
       googleAuthClientId: "",
+      reactStaticRootDir: "./src",
     });
     if (withDatabase) {
       // start the mongo in-memory server on an ephemeral port

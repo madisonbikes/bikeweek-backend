@@ -9,6 +9,7 @@ import { buildSessionMiddlewares } from "./security/session";
 import { AppHono } from "./app";
 import { showRoutes } from "hono/dev";
 import { env } from "process";
+import path from "path";
 
 let server: ServerType | undefined;
 
@@ -29,8 +30,15 @@ function create() {
   app.use(...buildSessionMiddlewares());
 
   app.route("/api/v1", routes);
-
   if (configuration.reactStaticRootDir) {
+    if (path.isAbsolute(configuration.reactStaticRootDir)) {
+      logger.error(
+        "reactStaticRootDir is an absolute path, this may not work as expected",
+      );
+    }
+    logger.info(
+      `Serving static files from ${configuration.reactStaticRootDir}`,
+    );
     app.use(
       "/*",
       serveStatic({
