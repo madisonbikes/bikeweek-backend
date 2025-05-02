@@ -185,12 +185,12 @@ export const locations: EventLocation[] = [
     name: "Demetral Park: Scofield @ 8th St",
     maps_query: "43.10530918724534, -89.35279222722049",
   },
-  {
-    name: "Centro Hispano",
-    maps_query: "43.03893771123766, -89.39540020253453",
-  },
-  {
-    name: "Northside Farmers Market",
-    maps_query: "43.12870776104843, -89.36315171787501",
-  },
+  // {
+  //   name: "Centro Hispano",
+  //   maps_query: "43.03893771123766, -89.39540020253453",
+  // },
+  // {
+  //   name: "Northside Farmers Market",
+  //   maps_query: "43.12870776104843, -89.36315171787501",
+  // },
 ];

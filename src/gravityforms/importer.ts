@@ -54,7 +54,7 @@ class Importer {
     // look through our server location list and make sure they all exist in the form
     for (const localLocation of locations) {
       const found =
-        choices.findIndex((c) => c.text === localLocation.name) !== -1;
+        choices.findIndex((c) => c.value === localLocation.name) !== -1;
       if (!found) {
         logger.warn(
           `Local location ${localLocation.name} not found in form choices`,
@@ -65,8 +65,8 @@ class Importer {
     // look through form choices and make sure they all exist in our server location list
     for (const formChoice of choices) {
       const found =
-        locations.findIndex((l) => l.name === formChoice.text) !== -1;
-      if (!found) {
+        locations.findIndex((l) => l.name === formChoice.value) !== -1;
+      if (!found && formChoice.text !== "") {
         logger.warn(
           `Form location choice ${formChoice.text} not found in local location list`,
         );
