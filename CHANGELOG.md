@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.0...bikeweek-backend-v1.2.1) (2025-05-02)
+
+
+### Bug Fixes
+
+* check that static root is a relative path ([62baf29](https://github.com/madisonbikes/bikeweek-backend/commit/62baf29fdee5e30e08f3e80ea3950f5c9b541648))
+* location updates for 2025 ([e868294](https://github.com/madisonbikes/bikeweek-backend/commit/e868294dd4f316e07c7ac3851967006a17435280))
+
 ## [1.2.0](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.1.3...bikeweek-backend-v1.2.0) (2025-05-02)
 
 
