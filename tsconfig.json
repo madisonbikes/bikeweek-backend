@@ -8,7 +8,8 @@
     "experimentalDecorators": true,
     "allowJs": false,
     "noImplicitOverride": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "isolatedModules": true
   },
   "include": ["src/**/*.ts", ".commitlintrc.ts", "jest.config.ts"]
 }
