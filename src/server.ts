@@ -26,13 +26,19 @@ function create() {
     //app.use(cors());
   }
 
-  if (configuration.reactStaticRootDir) {
-    app.use("/", serveStatic({ root: configuration.reactStaticRootDir }));
-  }
-
   app.use(...buildSessionMiddlewares());
 
   app.route("/api/v1", routes);
+
+  if (configuration.reactStaticRootDir) {
+    app.use(
+      "/*",
+      serveStatic({
+        root: configuration.reactStaticRootDir,
+        index: "index.html",
+      }),
+    );
+  }
 
   if (env.NODE_ENV !== "test") {
     showRoutes(app);
