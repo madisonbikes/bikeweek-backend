@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.1.3...bikeweek-backend-v1.2.0) (2025-05-02)
+
+
+### Features
+
+* update for 2025 ([600746d](https://github.com/madisonbikes/bikeweek-backend/commit/600746db3b16d45118ec163617b93b904266e9fe))
+
+
+### Bug Fixes
+
+* **tsconfig:** add isolatedModules option to compilerOptions ([e1e2b7d](https://github.com/madisonbikes/bikeweek-backend/commit/e1e2b7d5041023b81fde1bb9ff55fe94f75dd0c6))
+
 ## [1.1.3](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.1.2...bikeweek-backend-v1.1.3) (2025-04-30)
 
 
