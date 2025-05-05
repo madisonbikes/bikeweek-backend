@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.1...bikeweek-backend-v1.2.2) (2025-05-05)
+
+
+### Bug Fixes
+
+* bump zod from 3.24.3 to 3.24.4 ([9247f7d](https://github.com/madisonbikes/bikeweek-backend/commit/9247f7d24b49d1d9aa870c5e2edb39ea75416a59))
+* bump zod from 3.24.3 to 3.24.4 ([f0e2689](https://github.com/madisonbikes/bikeweek-backend/commit/f0e2689910dab90d4907a423f26566b7d5b701a4))
+
 ## [1.2.1](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.0...bikeweek-backend-v1.2.1) (2025-05-02)
 
 
