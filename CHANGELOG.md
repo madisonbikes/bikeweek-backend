@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.2](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.1...bikeweek-backend-v1.2.2) (2025-05-12)
+
+
+### Bug Fixes
+
+* bump hono from 4.7.8 to 4.7.9 ([ed096f9](https://github.com/madisonbikes/bikeweek-backend/commit/ed096f91d2c07e9da48136168cbe0cdcea4e3972))
+* bump hono from 4.7.8 to 4.7.9 ([dc00634](https://github.com/madisonbikes/bikeweek-backend/commit/dc00634d7005b8595402358be0fbe1ac20038134))
+* bump superagent from 10.2.0 to 10.2.1 ([281b281](https://github.com/madisonbikes/bikeweek-backend/commit/281b281cc3f742831cfd0e8da64cfb2219e9c546))
+* bump superagent from 10.2.0 to 10.2.1 ([9f82e40](https://github.com/madisonbikes/bikeweek-backend/commit/9f82e408918fd0cb2b390cdc0b014ff763002356))
+* bump zod from 3.24.3 to 3.24.4 ([9247f7d](https://github.com/madisonbikes/bikeweek-backend/commit/9247f7d24b49d1d9aa870c5e2edb39ea75416a59))
+* bump zod from 3.24.3 to 3.24.4 ([f0e2689](https://github.com/madisonbikes/bikeweek-backend/commit/f0e2689910dab90d4907a423f26566b7d5b701a4))
+* try session format to blank on sched mod ([0785987](https://github.com/madisonbikes/bikeweek-backend/commit/07859875572c6ebb044bb12e7b1a48641c81e004))
+
 ## [1.2.1](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.0...bikeweek-backend-v1.2.1) (2025-05-02)
 
 
