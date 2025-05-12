@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.2...bikeweek-backend-v1.2.3) (2025-05-12)
+
+
+### Bug Fixes
+
+* include redis password ([76487f3](https://github.com/madisonbikes/bikeweek-backend/commit/76487f3cfb3267621f24905427f31b04edd12d7b))
+
 ## [1.2.2](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.1...bikeweek-backend-v1.2.2) (2025-05-12)
 
 
