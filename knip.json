@@ -1,8 +1,16 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
-  "entry": ["src/test/**", "src/index.ts!", "ecosystem.config.js"],
-  "project": ["src/**/*.ts!"],
-  "ignore": ["src/routes/contract/types.ts", "src/test/assertions.ts"],
-  "ignoreDependencies": ["pino-pretty"],
+  "entry": [
+    "src/test/**",
+    "src/index.ts!",
+    "ecosystem.config.js"
+  ],
+  "project": [
+    "src/**/*.ts!"
+  ],
+  "ignore": [
+    "src/routes/contract/types.ts",
+    "src/test/assertions.ts"
+  ],
   "ignoreExportsUsedInFile": true
 }

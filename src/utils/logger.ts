@@ -1,19 +1,12 @@
 /* istanbul ignore file */
 import { ConnectionString } from "connection-string";
-import pino, {
-  DestinationStream,
-  Logger,
-  stdSerializers,
-  TransportTargetOptions,
-} from "pino";
+import pino, { stdSerializers } from "pino";
 import { initEnv } from "./env";
 
 initEnv();
 
-const logFile = process.env.LOG_FILE ?? "backend.log";
-const logLevel = process.env.LOG_LEVEL ?? "info";
-const consoleLogLevel = process.env.CONSOLE_LOG_LEVEL ?? "info";
-const testLogLevel = process.env.TEST_LOG_LEVEL ?? "silent";
+const TEST_LOG_LEVEL = process.env.TEST_LOG_LEVEL ?? "fatal";
+const LOG_LEVEL = process.env.LOG_LEVEL;
 
 const serializers = {
   err: stdSerializers.err,
@@ -25,44 +18,25 @@ const serializers = {
     }
   },
 };
+const usePinoPretty = Boolean(process.env.PINO_PRETTY);
+const options: pino.LoggerOptions = { serializers, level: LOG_LEVEL };
 
-let newLogger: Logger;
 if (process.env.NODE_ENV === "test") {
-  const transport = pino.transport({
-    targets: [
-      {
-        level: testLogLevel,
-        target: "pino-pretty",
-        options: { destination: 1 }, // stdout
-      },
-    ],
-  }) as DestinationStream;
-  newLogger = pino({ level: testLogLevel, serializers }, transport);
+  options.level = TEST_LOG_LEVEL;
+} else if (process.env.NODE_ENV === "development") {
+  options.level = LOG_LEVEL ?? "info";
 } else {
-  const targets: TransportTargetOptions[] = [
-    {
-      level: consoleLogLevel,
-      target: "pino-pretty",
-      options: { destination: 1 }, // stdout
-    },
-    {
-      level: logLevel,
-      target: "pino-pretty",
-      options: { colorize: false, destination: logFile },
-    },
-  ];
-
-  const transport = pino.transport({
-    targets,
-  }) as DestinationStream;
-
-  // ensure pino base logger level is set to minimum of the transports
-  const levels = [consoleLogLevel, logLevel].map((l) => pino.levels.values[l]);
-  const minLevel = Math.min(...levels);
-  const level = pino.levels.labels[minLevel];
-  newLogger = pino({ level, serializers }, transport);
+  // production
+  options.level = LOG_LEVEL ?? "warn";
 }
-export const logger = newLogger;
+
+if (usePinoPretty) {
+  options.transport = {
+    target: "pino-pretty",
+  };
+}
+
+export const logger = pino(options);
 
 export const maskUriPassword = (uri: string) => {
   try {
