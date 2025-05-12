@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.4...bikeweek-backend-v1.2.5) (2025-05-12)
+
+
+### Bug Fixes
+
+* missing log data for debug ([2cb947a](https://github.com/madisonbikes/bikeweek-backend/commit/2cb947a00b963e1c63b855af73756a9b736bc203))
+
 ## [1.2.4](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.3...bikeweek-backend-v1.2.4) (2025-05-12)
 
 
