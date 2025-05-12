@@ -104,6 +104,7 @@ class SchedApi {
       api_key: configuration.schedApiKey,
     };
     const fullEndpoint = configuration.schedUri + endpoint;
+    logger.debug(`sched api POST request for ${fullEndpoint}`, newRequestData);
     const response = await superagent
       .post(fullEndpoint)
       .set("User-Agent", "madisonbikeweek-importer/1.0.0")
