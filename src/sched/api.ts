@@ -23,7 +23,7 @@ class SchedApi {
       ...session,
 
       // WORKAROUND sched issue where format is csv
-      format: "",
+      //format: "",
     });
     if (isError) {
       return error(response.text);
@@ -38,7 +38,7 @@ class SchedApi {
     const { response, isError } = await this.postRequest("session/mod", {
       ...session,
       // WORKAROUND sched issue where format is csv
-      format: "",
+      //format: "",
     });
     if (isError) {
       return error(response.text);
@@ -104,13 +104,19 @@ class SchedApi {
       api_key: configuration.schedApiKey,
     };
     const fullEndpoint = configuration.schedUri + endpoint;
-    logger.debug(`sched api POST request for ${fullEndpoint}`, newRequestData);
+    logger.debug(
+      `=> sched api POST request for ${fullEndpoint}`,
+      newRequestData,
+    );
     const response = await superagent
       .post(fullEndpoint)
       .set("User-Agent", "madisonbikeweek-importer/1.0.0")
       .set("Content-Type", "application/x-www-form-urlencoded")
       .send(newRequestData);
 
+    logger.debug(
+      `<= sched api response for ${fullEndpoint} ${JSON.stringify(response.body, null, 2)}`,
+    );
     // error can be false or an error code, we'll separate those values
     if (response.error === false) {
       return { response, isError: false, code: undefined };
