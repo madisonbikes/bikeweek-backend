@@ -105,7 +105,8 @@ class SchedApi {
     };
     const fullEndpoint = configuration.schedUri + endpoint;
     logger.debug(
-      `=> sched api POST request for ${fullEndpoint}`,
+      `=> sched api POST request for %s %o`,
+      endpoint,
       newRequestData,
     );
     const response = await superagent
@@ -114,9 +115,7 @@ class SchedApi {
       .set("Content-Type", "application/x-www-form-urlencoded")
       .send(newRequestData);
 
-    logger.debug(
-      `<= sched api response for ${fullEndpoint} ${JSON.stringify(response.body, null, 2)}`,
-    );
+    logger.debug(`<= sched api response for %s %o`, endpoint, response.body);
     // error can be false or an error code, we'll separate those values
     if (response.error === false) {
       return { response, isError: false, code: undefined };
