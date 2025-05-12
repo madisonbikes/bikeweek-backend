@@ -28,6 +28,7 @@ export default tseslint.config([
     },
     files: ["**/*.{ts,jsx,tsx}"],
     rules: {
+      eqeqeq: ["warn", "smart"],
       // never allow console.log to be committed
       //"no-console": "warn",
 

@@ -6,7 +6,7 @@ class GoogleFederatedVerifier {
   name = (): FederatedProvider => "google";
 
   enabled = () => {
-    return configuration.googleAuthClientId != "";
+    return configuration.googleAuthClientId !== "";
   };
 
   verifyFederatedToken = async (token: string): Promise<string | undefined> => {

@@ -13,7 +13,7 @@ type ValkeyConfiguration = {
   password?: string;
 };
 
-const urlToValkeyConfiguration = (url: string): ValkeyConfiguration => {
+export const urlToValkeyConfiguration = (url: string): ValkeyConfiguration => {
   const parsedUrl = new URL(url);
   if (parsedUrl.protocol !== "valkey:" && parsedUrl.protocol !== "redis:") {
     throw new Error(`Invalid valkey session URI: ${url}`);
@@ -37,7 +37,7 @@ const urlToValkeyConfiguration = (url: string): ValkeyConfiguration => {
   }
 
   let password: string | undefined = parsedUrl.password;
-  if (password == "") {
+  if (password === "") {
     password = undefined;
   }
   return {
@@ -49,7 +49,7 @@ const urlToValkeyConfiguration = (url: string): ValkeyConfiguration => {
 };
 
 if (isEnabled()) {
-  const config = urlToValkeyConfiguration(configuration.redisUri);
+  const config = urlToValkeyConfiguration(configuration.valkeyUri);
   client = new Valkey({ ...config, lazyConnect: true });
   client.on("error", (err) => {
     logger.warn(err, "Redis Client Error");
@@ -59,13 +59,13 @@ if (isEnabled()) {
 }
 
 function isEnabled() {
-  return configuration.redisUri !== "";
+  return configuration.valkeyUri !== "";
 }
 
 async function start() {
   if (client !== undefined) {
     logger.info(
-      `Connecting to redis on ${maskUriPassword(configuration.redisUri)}`,
+      `Connecting to redis on ${maskUriPassword(configuration.valkeyUri)}`,
     );
     await client.connect();
   }

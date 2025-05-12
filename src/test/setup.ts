@@ -27,7 +27,7 @@ export const setupSuite = (options: Partial<SuiteOptions> = {}): void => {
   beforeAll(async () => {
     testConfiguration.reset();
     testConfiguration.add({
-      redisUri: "",
+      valkeyUri: "",
       secureCookie: false,
       gravityFormsUri: "",
       schedUri: "",

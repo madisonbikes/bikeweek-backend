@@ -70,7 +70,7 @@ const defaultConfiguration = {
   mongoDbUri: process.env.MONGODB_URI ?? "",
   serverPort: parseIntWithDefault(process.env.PORT, 3001),
   pollInterval: parseIntWithDefault(process.env.POLLINTERVAL, 10 * 60 * 1000),
-  redisUri: process.env.REDIS_URI ?? "",
+  valkeyUri: process.env.VALKEY_URI ?? process.env.REDIS_URI ?? "",
   sessionStoreSecret:
     process.env.SESSION_STORE_SECRET ??
     "notverysecret_notverysecret_notverysecret",

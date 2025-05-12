@@ -19,10 +19,12 @@ class SchedApi {
   async addSession(
     session: AddSessionRequest,
   ): Promise<Result<string, string>> {
-    const { response, isError } = await this.postRequest(
-      "session/add",
-      session,
-    );
+    const { response, isError } = await this.postRequest("session/add", {
+      ...session,
+
+      // WORKAROUND sched issue where format is csv
+      format: "",
+    });
     if (isError) {
       return error(response.text);
     } else {
@@ -35,6 +37,7 @@ class SchedApi {
   ): Promise<Result<string, string>> {
     const { response, isError } = await this.postRequest("session/mod", {
       ...session,
+      // WORKAROUND sched issue where format is csv
       format: "",
     });
     if (isError) {
