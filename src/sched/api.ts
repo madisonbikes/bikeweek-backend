@@ -23,7 +23,7 @@ class SchedApi {
       ...session,
 
       // WORKAROUND sched issue where format is csv
-      //format: "",
+      format: "",
     });
     if (isError) {
       return error(response.text);
@@ -37,8 +37,9 @@ class SchedApi {
   ): Promise<Result<string, string>> {
     const { response, isError } = await this.postRequest("session/mod", {
       ...session,
+
       // WORKAROUND sched issue where format is csv
-      //format: "",
+      format: "",
     });
     if (isError) {
       return error(response.text);
