@@ -52,10 +52,10 @@ if (isEnabled()) {
   const config = urlToValkeyConfiguration(configuration.valkeyUri);
   client = new Valkey({ ...config, lazyConnect: true });
   client.on("error", (err) => {
-    logger.warn(err, "Redis Client Error");
+    logger.warn(err, "Valkey client error");
   });
 } else {
-  logger.info("Redis disabled");
+  logger.info("Valkey disabled");
 }
 
 function isEnabled() {
@@ -65,7 +65,7 @@ function isEnabled() {
 async function start() {
   if (client !== undefined) {
     logger.info(
-      `Connecting to redis on ${maskUriPassword(configuration.valkeyUri)}`,
+      `Connecting to Valkey on ${maskUriPassword(configuration.valkeyUri)}`,
     );
     await client.connect();
   }
