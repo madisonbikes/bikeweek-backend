@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.4](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.3...bikeweek-backend-v1.2.4) (2025-05-12)
+
+
+### Bug Fixes
+
+* finalize migration to valkey and add tests for valkey connect ([8ec9d36](https://github.com/madisonbikes/bikeweek-backend/commit/8ec9d3644c4b65b678afaa5683953a3a21c298ec))
+* force release ([5ebc61b](https://github.com/madisonbikes/bikeweek-backend/commit/5ebc61b895903502a3e4803e5bbc0e6c9ae1f0ba))
+
 ## [1.2.3](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.2...bikeweek-backend-v1.2.3) (2025-05-12)
 
 
