@@ -33,10 +33,10 @@ class SchedApi {
   async modifySession(
     session: ModifySessionRequest,
   ): Promise<Result<string, string>> {
-    const { response, isError } = await this.postRequest(
-      "session/mod",
-      session,
-    );
+    const { response, isError } = await this.postRequest("session/mod", {
+      ...session,
+      format: "",
+    });
     if (isError) {
       return error(response.text);
     } else {
