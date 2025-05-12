@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.8](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.7...bikeweek-backend-v1.2.8) (2025-05-12)
+
+
+### Bug Fixes
+
+* update session format to resolve CSV issue ([4c5a5c4](https://github.com/madisonbikes/bikeweek-backend/commit/4c5a5c4dafa6a09c02cf2ccc1582e6c38a47f381))
+
 ## [1.2.7](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.6...bikeweek-backend-v1.2.7) (2025-05-12)
 
 
