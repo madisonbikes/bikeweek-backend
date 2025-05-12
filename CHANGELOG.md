@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.7](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.6...bikeweek-backend-v1.2.7) (2025-05-12)
+
+
+### Bug Fixes
+
+* remove default ecosystem date/time specifiers for log ([53515e4](https://github.com/madisonbikes/bikeweek-backend/commit/53515e4a444054aec521accfa6cbb1eca7753e79))
+
 ## [1.2.6](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.5...bikeweek-backend-v1.2.6) (2025-05-12)
 
 
