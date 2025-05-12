@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.6](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.5...bikeweek-backend-v1.2.6) (2025-05-12)
+
+
+### Bug Fixes
+
+* remove production use of pino-pretty ([0731ca5](https://github.com/madisonbikes/bikeweek-backend/commit/0731ca58e4a70231b60a4b8a8e9ef453cbc41a54))
+
 ## [1.2.5](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.4...bikeweek-backend-v1.2.5) (2025-05-12)
 
 
