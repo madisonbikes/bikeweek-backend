@@ -47,6 +47,7 @@ export const locations: EventLocation[] = [
   },
   {
     name: "Capital City Path @ Jackson St",
+    sched_address: "252 Jackson St, Madison, WI 53704, USA",
     maps_query: "43.09362734540651, -89.3487495229572",
   },
   {
@@ -112,10 +113,12 @@ export const locations: EventLocation[] = [
   },
   {
     name: "Reynolds Park: N Paterson St @ E Mifflin St",
+    sched_address: "101 N Paterson St, Madison, WI 53703, USA",
     maps_query: "43.08293952681019, -89.37557016431424",
   },
   {
     name: "Pinney Library",
+    sched_address: "516 Cottage Grove Rd, Madison, WI 53716, USA",
     maps_query: "43.08433667433231, -89.31788920164708",
   },
   {
@@ -158,6 +161,7 @@ export const locations: EventLocation[] = [
   },
   {
     name: "Wingra Creek Path @ Arboretum",
+    sched_address: "1355 McCaffrey Dr, Madison, WI 53713, USA",
     maps_query: "43.05692598905787, -89.40408758819244",
   },
   {
