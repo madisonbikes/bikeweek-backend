@@ -47,10 +47,11 @@ class Processor {
         .parse(eventHelper.lookupFieldValue(entry, "status"));
       const createDate = parse(entry.date_created, GF_DATE_FORMAT, new Date());
       const modifyDate = parse(entry.date_updated, GF_DATE_FORMAT, new Date());
+      const name = eventHelper.requireFieldValue(entry, "event_name");
 
       const newEntry = bikeWeekEventSchema.parse({
         id: entry.id,
-        name: eventHelper.requireFieldValue(entry, "event_name"),
+        name,
         eventUrl: eventHelper.lookupFieldValue(entry, "event_url"),
         description: eventHelper.requireFieldValue(entry, "event_description"),
         sponsors,
@@ -59,7 +60,7 @@ class Processor {
         eventDays: eventHelper.getEventDays(entry),
         eventTimes: eventTimeSchema
           .array()
-          .parse(eventHelper.getEventTimes(entry)),
+          .parse(eventHelper.getEventTimes(entry, name)),
         eventGraphicUrl: eventHelper.lookupFieldValue(entry, "event_graphic"),
         modifyDate,
         createDate,
@@ -124,13 +125,15 @@ class EventHelper {
     return this.requireMultiFieldValue(entry, "event_type");
   }
 
-  getEventTimes(entry: Entry): EventTime[] {
+  getEventTimes(entry: Entry, eventName: string): EventTime[] {
     const eventStart = this.lookupFieldValue(entry, "event_start") ?? "";
     const eventEnd = this.lookupFieldValue(entry, "event_end") ?? "";
     if (!eventEnd || !eventStart) {
       if (eventEnd || eventStart) {
         logger.warn(
-          "Event has a mismatched start/end time. Event will be assumed to all-day.",
+          "Event id: %d name: %s has a mismatched start/end time. Event will be assumed to all-day.",
+          entry.id,
+          eventName,
         );
       }
       return [];
