@@ -35,15 +35,17 @@ export async function exportToSched(
     .sort((a, b) => a.name.localeCompare(b.name))
     .filter((event) => {
       if (isEndOfWeekParty(event)) {
-        logger.debug(`Skipping ${event.name} (end of week party tabling)`);
+        logger.debug(
+          `Skipping Sched sync for ${event.name} (end of week party tabling)`,
+        );
         return false;
       }
       if (isAllDayEvent(event)) {
-        logger.debug(`Skipping ${event.name} (all day, no time)`);
+        logger.info(`Skipping Sched sync for ${event.name} (all day, no time)`);
         return false;
       }
       if (event.eventDays.length === 0) {
-        logger.debug(`Skipping ${event.name} (no days)`);
+        logger.info(`Skipping Sched sync for ${event.name} (no days)`);
         return false;
       }
       if (
