@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.10](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.9...bikeweek-backend-v1.2.10) (2025-05-22)
+
+
+### Bug Fixes
+
+* add warn details for mismatched start/time ([de3bc34](https://github.com/madisonbikes/bikeweek-backend/commit/de3bc34394fdf1c2273bc2d4c2d97cc85ca87e7a))
+
 ## [1.2.9](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.8...bikeweek-backend-v1.2.9) (2025-05-22)
 
 
