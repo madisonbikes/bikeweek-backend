@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.9](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.8...bikeweek-backend-v1.2.9) (2025-05-22)
+
+
+### Bug Fixes
+
+* add info level messages for skips due to missing time, day ([fb5850e](https://github.com/madisonbikes/bikeweek-backend/commit/fb5850effced92f4836cd31f3edaa5f6acf369f0))
+* update locations w/sched addresses ([4c17a37](https://github.com/madisonbikes/bikeweek-backend/commit/4c17a3773624556e16a5f6ea89dc18f7516b84ac))
+
 ## [1.2.8](https://github.com/madisonbikes/bikeweek-backend/compare/bikeweek-backend-v1.2.7...bikeweek-backend-v1.2.8) (2025-05-12)
 
 
